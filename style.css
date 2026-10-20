@@ -308,6 +308,23 @@ button { font: inherit; color: inherit; }
   to { opacity: 1; transform: none; }
 }
 
+/* качване в самолета */
+.boarding {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+.boarding.show { opacity: 1; visibility: visible; transition: opacity .5s ease; }
+.boarding .b-label {
+  font: 400 15px var(--f-display);
+  letter-spacing: .06em;
+  fill: var(--cream);
+}
+
 /* бордингкарта */
 .pass {
   display: flex;

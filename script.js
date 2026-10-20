@@ -21,6 +21,7 @@ const CONFIG = {
 
     mapAlt: "Карта: полет от София до Рим",
     outboundLabel: "Полет за Рим",
+    boarding: "Качваме се на борда",
     dayCounter: "Ден {n} от {total}",
     continueButton: "Продължи",
 
@@ -67,8 +68,11 @@ const CONFIG = {
   timing: {
     giftOpen: 3000,     // колко стои отворената кутия преди картата
     intro: 900,         // пауза преди първия полет
-    passRead: 1900,     // колко се чете часът на тръгване
-    flight: 5200,       // продължителност на един полет
+    passRead: 1000,     // колко се чете часът на тръгване
+    walk: 1700,         // вървене до стълбата
+    climb: 1000,        // качване по стълбата
+    takeoff: 1600,      // рулиране и излитане
+    flight: 4500,       // продължителност на полета по картата (3000–5000)
     day: 3600,          // колко стои всеки ден
     beforeReturn: 1800, // пауза преди обратния полет
     end: 1500,          // пауза след кацането в София
@@ -204,6 +208,66 @@ function setTrail(t, dir) {
   );
 }
 
+const bd = {};
+
+function initBoarding() {
+  ["boarding", "bPlane", "bStairs", "bPerson", "bLegL", "bLegR", "bDoor", "bLine"].forEach((id) => {
+    bd[id] = $("#" + id);
+  });
+}
+
+function setPerson(x, y, phase) {
+  const swing = Math.sin(phase) * 5.5;
+  const bob = Math.abs(Math.sin(phase)) * 1.3;
+  bd.bPerson.setAttribute("transform", `translate(${x} ${y - bob})`);
+  bd.bLegL.setAttribute("d", `M0-11L${swing} 0`);
+  bd.bLegR.setAttribute("d", `M0-11L${-swing} 0`);
+}
+
+async function boardPlane() {
+  const T = CONFIG.timing;
+  bd.bPlane.removeAttribute("transform");
+  bd.bStairs.removeAttribute("transform");
+  bd.bStairs.style.opacity = 1;
+  bd.bPerson.style.opacity = 1;
+  bd.bDoor.setAttribute("opacity", 0);
+  setPerson(-16, 171, 0);
+  bd.boarding.classList.add("show");
+  await sleep(500);
+
+  // пътникът върви до стълбата
+  await tween(T.walk, (p) => setPerson(-16 + p * 219, 171, p * 219 / 6));
+  // и се качва по нея
+  await tween(T.climb, (p) => setPerson(203 + p * 41, 171 - p * 25, (219 + p * 48) / 6));
+  // влиза през вратата
+  await tween(300, (p) => {
+    bd.bPerson.style.opacity = 1 - p;
+    bd.bDoor.setAttribute("opacity", p);
+  });
+  await sleep(250);
+  // стълбата се отдръпва
+  await tween(600, (p) => {
+    bd.bStairs.setAttribute("transform", `translate(${-70 * p} 0)`);
+    bd.bStairs.style.opacity = 1 - p;
+  });
+  bd.bDoor.setAttribute("opacity", 0);
+  await sleep(250);
+  // рулиране и излитане
+  let line = 0;
+  await tween(T.takeoff, (p) => {
+    const k = p * p;
+    const lift = Math.max(0, (p - 0.55) / 0.45);
+    const tx = k * 330;
+    const ty = -lift * lift * 70;
+    const rot = -lift * 16;
+    bd.bPlane.setAttribute("transform", `translate(${tx} ${ty}) rotate(${rot} 312 166)`);
+    line -= 2 + p * 30;
+    bd.bLine.setAttribute("stroke-dashoffset", line);
+  });
+  bd.boarding.classList.remove("show");
+  await sleep(500);
+}
+
 async function fly(dir) {
   const ms = CONFIG.timing.flight;
   if (dir < 0) {
@@ -311,6 +375,7 @@ async function runTrip() {
   addPass(list);
   await sleep(T.passRead);
 
+  await boardPlane();
   await fly(1);
   pulse("#cityRome");
 
@@ -322,6 +387,7 @@ async function runTrip() {
   }
 
   await sleep(T.beforeReturn);
+  await boardPlane();
   await fly(-1);
   pulse("#citySofia");
 
@@ -553,5 +619,6 @@ function launchConfetti(origin) {
    ========================================================================== */
 applyConfig();
 initMap();
+initBoarding();
 initGift();
 initAsk();

@@ -186,6 +186,60 @@
 
             <rect x="0" y="40" width="400" height="220" fill="url(#vignette)" pointer-events="none"/>
           </svg>
+          <svg id="boarding" class="boarding" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="bSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0c1836"/>
+                <stop offset=".6" stop-color="#2b3a62"/>
+                <stop offset="1" stop-color="#b5532f"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="171" fill="url(#bSky)"/>
+            <g fill="#fff" opacity=".7">
+              <circle cx="40" cy="30" r="1"/><circle cx="110" cy="58" r="1.2"/><circle cx="170" cy="22" r="1"/>
+              <circle cx="300" cy="40" r="1.2"/><circle cx="360" cy="18" r="1"/><circle cx="340" cy="70" r="1"/>
+            </g>
+            <rect y="171" width="400" height="49" fill="#0e1a36"/>
+            <rect y="171" width="400" height="2" fill="#e2b25a" opacity=".5"/>
+            <path id="bLine" d="M-40 196H460" stroke="#f6e8cb" stroke-opacity=".55" stroke-width="2.5" stroke-dasharray="22 20" fill="none"/>
+            <text class="b-label" x="200" y="34" text-anchor="middle" data-text="trip.boarding"></text>
+
+            
+
+            <g id="bPlane">
+              <path d="M122 112L106 76H132L152 104Z" fill="#e9d6b0"/>
+              <path d="M120 128C120 108 140 104 170 104H300C325 104 345 116 352 128C345 140 325 146 300 146H170C140 146 120 142 120 128Z" fill="#f6e8cb"/>
+              <rect x="124" y="133" width="226" height="4" fill="#c4583a"/>
+              <path d="M272 132H318L296 153H260Z" fill="#d8c299"/>
+              <rect x="268" y="146" width="30" height="11" rx="5" fill="#b9a27a"/>
+              <g fill="#14224a">
+                <circle cx="168" cy="120" r="3"/><circle cx="182" cy="120" r="3"/><circle cx="196" cy="120" r="3"/><circle cx="210" cy="120" r="3"/><circle cx="224" cy="120" r="3"/>
+                <circle cx="276" cy="120" r="3"/><circle cx="290" cy="120" r="3"/><circle cx="304" cy="120" r="3"/>
+                <path d="M322 113C332 113 340 117 344 122H322Z"/>
+              </g>
+              <rect x="244" y="108" width="18" height="37" rx="3" fill="#a98f62"/>
+              <rect id="bDoor" x="247" y="111" width="12" height="31" rx="2" fill="#ffe7a8" opacity="0"/>
+              <g stroke="#6b7794" stroke-width="3" stroke-linecap="round">
+                <path d="M284 148V166M312 146V166M334 144V166"/>
+              </g>
+              <g fill="#10192f"><circle cx="284" cy="166" r="5"/><circle cx="312" cy="166" r="5"/><circle cx="334" cy="166" r="5"/></g>
+            </g>
+
+            <g id="bStairs">
+              <path d="M196 171L244 146V171Z" fill="#33446f"/>
+              <path d="M196 171L244 146M206 171V165M216 171V160M226 171V155M236 171V150" stroke="#8fa0c8" stroke-width="1.6" fill="none"/>
+              <path d="M203 154L244 132" stroke="#e2b25a" stroke-width="2" fill="none"/>
+            </g>
+
+            <g id="bPerson">
+              <path id="bLegL" d="M0-11L0 0" stroke="#e2b25a" stroke-width="3.6" stroke-linecap="round"/>
+              <path id="bLegR" d="M0-11L0 0" stroke="#e2b25a" stroke-width="3.6" stroke-linecap="round"/>
+              <path d="M0-24V-11" stroke="#dd7a52" stroke-width="6" stroke-linecap="round"/>
+              <rect x="-9" y="-21" width="7" height="10" rx="1.5" fill="#c4583a" stroke="#f3d58d" stroke-width="1"/>
+              <circle cx="1" cy="-29" r="4.4" fill="#f0b48a"/>
+              <path d="M-3.5-31C-3-35 3-35 5-31C2-33-1-33-3.5-31Z" fill="#3a2418"/>
+            </g>
+          </svg>
           <p id="dayCount" class="daycount" hidden></p>
         </div>
 
