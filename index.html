@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1530">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Изненада</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-22 -20 44 40'%3E%3Crect x='-22' y='-20' width='44' height='40' rx='9' fill='%230b1530'/%3E%3Cpath fill='%23e2b25a' d='M21 0C17-2.6 9-3-13-2.2L-17-1V1L-13 2.2C9 3 17 2.6 21 0ZM7-2.4L-5-18.5H-9.5L-4.5-2.4ZM7 2.4L-5 18.5H-9.5L-4.5 2.4ZM-12-1.6L-17-8H-20L-17.5-1.2ZM-12 1.6L-17 8H-20L-17.5 1.2Z'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Общи SVG символи -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Самолет отгоре, носът сочи надясно (+x) -->
+      <symbol id="i-plane" viewBox="-22 -20 44 40">
+        <path d="M21 0C17-2.6 9-3-13-2.2L-17-1V1L-13 2.2C9 3 17 2.6 21 0ZM7-2.4L-5-18.5H-9.5L-4.5-2.4ZM7 2.4L-5 18.5H-9.5L-4.5 2.4ZM-12-1.6L-17-8H-20L-17.5-1.2ZM-12 1.6L-17 8H-20L-17.5 1.2Z"/>
+      </symbol>
+      <symbol id="i-spark" viewBox="-10 -10 20 20">
+        <path d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="sky" aria-hidden="true"></div>
+
+  <main id="app">
+
+    <!-- 1. Подаръкът -->
+    <section id="scene-gift" class="scene active">
+      <div class="gift-stack">
+        <p class="kicker" data-text="gift.kicker"></p>
+        <h1 class="name" data-text="name"></h1>
+
+        <div class="gift-wrap">
+          <svg id="gift" viewBox="0 0 240 250" data-aria="gift.alt" role="img">
+            <defs>
+              <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d96b43"/>
+                <stop offset="1" stop-color="#a24329"/>
+              </linearGradient>
+              <linearGradient id="lidG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e07a50"/>
+                <stop offset="1" stop-color="#b44d2f"/>
+              </linearGradient>
+              <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f8e0a0"/>
+                <stop offset="0.55" stop-color="#e2b25a"/>
+                <stop offset="1" stop-color="#b98a35"/>
+              </linearGradient>
+              <linearGradient id="rayG" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/>
+              </linearGradient>
+              <radialGradient id="glowG">
+                <stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <ellipse class="g-shadow" cx="120" cy="228" rx="88" ry="9"/>
+
+            <g class="g-box">
+              <!-- вътрешност -->
+              <ellipse cx="120" cy="120" rx="78" ry="13" fill="#2a110c"/>
+              <ellipse class="g-glow" cx="120" cy="116" rx="70" ry="22" fill="url(#glowG)"/>
+
+              <g class="g-rays" fill="url(#rayG)">
+                <path d="M120 118L58-6L86-14Z"/>
+                <path d="M120 118L96-20L120-24Z"/>
+                <path d="M120 118L126-24L152-18Z"/>
+                <path d="M120 118L160-14L190-2Z"/>
+                <path d="M120 118L10 10L14 40Z"/>
+                <path d="M120 118L230 4L226 36Z"/>
+              </g>
+
+              <!-- билетът, който излиза от кутията -->
+              <g class="g-ticket">
+                <rect x="80" y="88" width="80" height="48" rx="4" fill="#f6e8cb"/>
+                <rect x="80" y="88" width="80" height="11" rx="4" fill="#12224a"/>
+                <rect x="80" y="94" width="80" height="5" fill="#12224a"/>
+                <line x1="118" y1="104" x2="118" y2="132" stroke="#b98a35" stroke-width="1.2" stroke-dasharray="2.5 3"/>
+                <use href="#i-plane" x="88" y="108" width="22" height="20" fill="#a1432a"/>
+                <rect x="126" y="110" width="26" height="3" rx="1.5" fill="#12224a"/>
+                <rect x="126" y="118" width="18" height="3" rx="1.5" fill="#b98a35"/>
+                <rect x="126" y="126" width="22" height="3" rx="1.5" fill="#12224a" opacity=".6"/>
+              </g>
+
+              <!-- предна стена -->
+              <rect x="42" y="120" width="156" height="104" rx="5" fill="url(#bodyG)"/>
+              <rect x="42" y="120" width="156" height="4" fill="#f0a27d" opacity=".55"/>
+              <rect x="108" y="120" width="24" height="104" fill="url(#goldG)"/>
+              <rect x="42" y="214" width="156" height="10" rx="3" fill="#000" opacity=".14"/>
+
+              <!-- капак -->
+              <g class="g-lid">
+                <rect x="32" y="92" width="176" height="36" rx="5" fill="url(#lidG)"/>
+                <rect x="32" y="92" width="176" height="4" rx="2" fill="#f4b48f" opacity=".6"/>
+                <rect x="108" y="92" width="24" height="36" fill="url(#goldG)"/>
+                <path d="M120 92C94 52 62 70 82 91C96 101 112 97 120 92Z" fill="url(#goldG)"/>
+                <path d="M120 92C146 52 178 70 158 91C144 101 128 97 120 92Z" fill="url(#goldG)"/>
+                <path d="M120 92C100 74 86 76 88 88" fill="none" stroke="#b98a35" stroke-width="1.4" opacity=".7"/>
+                <path d="M120 92C140 74 154 76 152 88" fill="none" stroke="#b98a35" stroke-width="1.4" opacity=".7"/>
+                <circle cx="120" cy="91" r="8" fill="url(#goldG)"/>
+              </g>
+            </g>
+
+            <g class="g-sparks" fill="#ffe7a8">
+              <g transform="translate(40 62) scale(1)"><path class="sp s1" d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/></g>
+              <g transform="translate(206 52) scale(1.2)"><path class="sp s2" d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/></g>
+              <g transform="translate(176 98) scale(0.7)"><path class="sp s3" d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/></g>
+              <g transform="translate(58 104) scale(0.7)"><path class="sp s4" d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/></g>
+              <g transform="translate(120 16) scale(0.9)"><path class="sp s5" d="M0-9L2.2-2.2L9 0L2.2 2.2L0 9L-2.2 2.2L-9 0L-2.2-2.2Z"/></g>
+            </g>
+          </svg>
+        </div>
+
+        <button id="openBtn" class="btn btn-primary" type="button" data-text="gift.button"></button>
+      </div>
+    </section>
+
+    <!-- 2. Пътуването -->
+    <section id="scene-trip" class="scene">
+      <div class="trip-wrap">
+        <div class="mapbox">
+          <svg id="map" viewBox="0 40 400 220" preserveAspectRatio="xMidYMid slice" data-aria="trip.mapAlt" role="img">
+            <defs>
+              <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1a3566"/>
+                <stop offset="1" stop-color="#0e2146"/>
+              </linearGradient>
+              <linearGradient id="landG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c2693f"/>
+                <stop offset="1" stop-color="#8f4631"/>
+              </linearGradient>
+              <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse">
+                <circle cx="1.5" cy="1.5" r=".7" fill="#f6e8cb" opacity=".22"/>
+              </pattern>
+              <mask id="trail" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="300">
+                <path id="trailMask" d="M306 146Q209 20 112 172" fill="none" stroke="#fff" stroke-width="16"/>
+              </mask>
+              <radialGradient id="vignette" cx=".5" cy=".5" r=".75">
+                <stop offset=".6" stop-color="#000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".45"/>
+              </radialGradient>
+            </defs>
+
+            <rect x="0" y="40" width="400" height="220" fill="url(#seaG)"/>
+
+            <g class="grat" fill="none">
+              <path d="M0 70H400M0 110H400M0 150H400M0 190H400M0 230H400"/>
+              <path d="M50 40V260M100 40V260M150 40V260M200 40V260M250 40V260M300 40V260M350 40V260"/>
+            </g>
+
+            <g class="land">
+              <path d="M0 0H400V260L372 258L362 235L361 212L352 198L325 197L320 208L314 216L306 208L298 203L292 214L300 236L312 266L305 300L290 300L267 282L276 259L258 242L250 229L244 221L236 206L236 186L230 167L212 153L181 133L160 119L147 91L138 102L137 83L110 89L114 120L130 132L143 159L156 170L178 172L190 190L209 201L219 215L216 222L208 216L196 205L185 215L183 228L196 242L185 247L175 267L168 262L172 248L174 234L167 217L162 217L153 203L143 198L130 189L107 174L76 148L72 133L63 119L47 112L22 126L0 120Z"/>
+              <path d="M42 188L58 188L63 205L60 222L54 238L40 240L36 222L34 205Z"/>
+              <path d="M47 148L55 153L58 162L54 178L48 184L42 176L41 162L43 152Z"/>
+            </g>
+
+            <!-- маршрут -->
+            <path id="route" class="route-base" d="M306 146Q209 20 112 172"/>
+            <path id="routeBright" class="route-bright" d="M306 146Q209 20 112 172" mask="url(#trail)"/>
+
+            <!-- градове -->
+            <g id="cityRome" class="city" transform="translate(112 172)">
+              <circle class="ring" r="6"/>
+              <circle class="dot" r="4.5"/>
+              <text class="label" x="-9" y="5" text-anchor="end" data-text="trip.to"></text>
+            </g>
+            <g id="citySofia" class="city" transform="translate(306 146)">
+              <circle class="ring" r="6"/>
+              <circle class="dot" r="4.5"/>
+              <text class="label" x="10" y="21" text-anchor="start" data-text="trip.from"></text>
+            </g>
+
+            <!-- самолет и сянката му -->
+            <use id="planeShadow" href="#i-plane" x="-22" y="-20" width="44" height="40" fill="#000" opacity=".28"/>
+            <use id="plane" href="#i-plane" x="-22" y="-20" width="44" height="40" fill="#f6e8cb"/>
+
+            <rect x="0" y="40" width="400" height="220" fill="url(#vignette)" pointer-events="none"/>
+          </svg>
+          <p id="dayCount" class="daycount" hidden></p>
+        </div>
+
+        <ol id="timeline" class="timeline" aria-live="polite"></ol>
+
+        <button id="continueBtn" class="btn btn-primary" type="button" hidden data-text="trip.continueButton"></button>
+      </div>
+    </section>
+
+    <!-- 3. Въпросът -->
+    <section id="scene-ask" class="scene">
+      <svg class="colosseum" viewBox="30 30 300 82" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <pattern id="arch1" x="0" y="84" width="20" height="28" patternUnits="userSpaceOnUse">
+            <path d="M4 28V14a6 6 0 0 1 12 0V28Z" fill="#000"/>
+          </pattern>
+          <pattern id="arch2" x="0" y="58" width="20" height="22" patternUnits="userSpaceOnUse">
+            <path d="M5 22V11a5 5 0 0 1 10 0V22Z" fill="#000"/>
+          </pattern>
+          <pattern id="win" x="0" y="38" width="20" height="14" patternUnits="userSpaceOnUse">
+            <rect x="7" y="2" width="6" height="9" rx="1" fill="#000"/>
+          </pattern>
+          <linearGradient id="colG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2a1a22"/>
+            <stop offset="1" stop-color="#0b1020"/>
+          </linearGradient>
+          <mask id="colMask" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="112">
+            <rect width="400" height="112" fill="#fff"/>
+            <rect x="0" y="84" width="400" height="28" fill="url(#arch1)"/>
+            <rect x="0" y="58" width="400" height="22" fill="url(#arch2)"/>
+            <rect x="0" y="38" width="400" height="14" fill="url(#win)"/>
+          </mask>
+        </defs>
+        <path d="M0 36H236L248 44L256 40L268 52L282 50L296 64H400V112H0Z" fill="url(#colG)" mask="url(#colMask)"/>
+        <path d="M0 82H400M0 56H280" stroke="#e2b25a" stroke-opacity=".22" stroke-width="1.2" fill="none"/>
+      </svg>
+
+      <div class="moon" aria-hidden="true"></div>
+
+      <div id="askMain" class="ask-main">
+        <p class="kicker" data-text="ask.kicker"></p>
+        <h2 id="askTitle" class="ask-title" data-text="ask.question"></h2>
+        <div class="actions">
+          <button id="yesBtn" class="btn btn-primary btn-yes" type="button" data-text="ask.yes"></button>
+          <button id="noBtn" class="btn btn-ghost" type="button" data-text="ask.no"></button>
+        </div>
+        <p id="askNote" class="ask-note" aria-live="polite"></p>
+      </div>
+
+      <div id="celebrate" class="celebrate" hidden>
+        <svg class="cel-plane" aria-hidden="true"><use href="#i-plane"/></svg>
+        <h2 class="cel-title" data-text="ask.celebrate"></h2>
+        <p class="cel-sub" data-text="ask.celebrateSub"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
